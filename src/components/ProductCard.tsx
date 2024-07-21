@@ -36,35 +36,37 @@ export default function Card(props: CardProps) {
       >
         {isDiscount && <DiscountOffTags percent={discount} />}
         <Image
-          style={tailwind`rounded-lg min-h-[200px] min-w-[160px] max-w-full w-full h-auto p-2`}
-          source={img}
-          resizeMode="contain"
+          style={tailwind`rounded-lg min-h-[200px] min-w-[180px] max-w-[180px] w-full h-auto p-2`}
+          source={{uri: img as any}}
+          resizeMode="cover"
         />
       </View>
-      <View style={tailwind`flex flex-start p-1 mx-auto my-0 min-h-14`}>
+      <View style={[tailwind`flex p-1 mx-auto my-0 min-h-14`, {
+      }]}>
         <Text
-          style={tailwind` text-xs font-semibold text-[${Colors.gray}] tracking-tight`}
+          style={tailwind`text-xs font-semibold text-[${Colors.gray}] tracking-tight`}
         >
           {title}
         </Text>
       </View>
-      <View style={tailwind` flex flex-row justify-between items-center`}>
-        <View style={tailwind`flex gap-1 justify-between items-center`}>
+      <View style={tailwind`flex flex-row justify-between items-center`}>
+        <View style={tailwind`flex flex-col items-center`}>
           <Text
-            style={tailwind` h-full text-[${Colors.pink}] text-xs font-semibold `}
+            style={tailwind`text-[${Colors.pink}] text-xs font-semibold `}
           >
             AED {parseFloat(price).toFixed(2)}
           </Text>
           {isDiscount && (
             <Text
-              style={tailwind` h-full line-through text-[#828282] text-xs font-semibold `}
+              style={tailwind` h-full line-through text-[#828282] text-xs font-semibold `}  
             >
               AED {parseFloat(regularPrice).toFixed(2)}
             </Text>
-          )}
+        )} 
         </View>
+
         <View
-          style={tailwind`flex items-center border border-transparent rounded-full shadow-lg h-7 relative w-7`}
+          style={tailwind`flex items-center justify-center bg-white border border-transparent rounded-full shadow-lg h-7 relative w-7`}
         >
           <Ionicons name="cart-outline" size={20} />
         </View>

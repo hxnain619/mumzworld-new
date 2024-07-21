@@ -47,7 +47,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
                <Image
                   key={index}
                   style={{ height, width, resizeMode: "cover" }}
-                  source={image}
+                  source={{uri: image as any}}
                />
             ))}
          </ScrollView>

@@ -17,6 +17,8 @@ import tailwind from "twrnc";
 import SearchBar from "@components/SearchBar";
 import Loader from "@components/Loader";
 import RTLView from "@components/RTLView";
+import { loadLanguage, saveLanguage } from "@api/languageStorage";
+import { LanguageType } from "@assets/translations/language";
 
 const { height } = Dimensions.get("window");
 
@@ -30,6 +32,11 @@ export default function ProductDetailPage() {
    const navigation = useNavigation();
    const { category: categId } = useGlobalSearchParams();
 
+   useEffect(() => {
+      loadLanguage().then(async (lang) => {
+         await saveLanguage(lang as LanguageType);
+      });
+   }, []);
    useLayoutEffect(() => {
       navigation.setOptions({
          title: `${categId} Products`,
@@ -91,7 +98,7 @@ export default function ProductDetailPage() {
 
    return (
       <ScrollView
-         style={tailwind`flex flex-1 pb-10 max-w-[448px]`}
+         style={tailwind`flex flex-1 pb-10`}
          scrollEnabled={scrollEnabled}
          onContentSizeChange={onContentSizeChange}
       >

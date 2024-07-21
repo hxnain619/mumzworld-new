@@ -11,11 +11,11 @@ const BottomTabBar = (props: { currentPage: string }) => {
    return (
       <View
          style={[
-            tw` z-50 w-[95%] h-17 max-w-lg shadow-lg left-2.5   bg-white border border-gray-200 rounded-full bottom-3 `,
+            tw`z-50 w-[95%] h-17 max-w-lg shadow-lg left-2.5 bg-white border border-gray-200 rounded-full bottom-3 `,
          ]}
       >
          <View
-            style={tw`flex flex-row items-center my-2 h-full max-w-lg mx-auto gap-0`}
+            style={tw`flex flex-row items-center mt-3 h-full max-w-lg mx-auto gap-1`}
          >
             {[
                { title: "Home", icon: "home-outline", to: "/" },
@@ -25,16 +25,15 @@ const BottomTabBar = (props: { currentPage: string }) => {
                   to: "/categories",
                },
                { title: "Sale", icon: "pricetag-outline", to: "/sale" },
-               { title: "Wishlist", icon: "heart-outline", to: "/wishlist" },
                { title: "My Account", icon: "person-outline", to: "/settings" },
             ].map((page: { icon: any; title: string; to: string }) => (
                <Link
                   href={page.to}
                   key={page.title}
-                  style={tw` flex  rounded-full ${currentPage === page.title ? `text-[${Colors.pink}]` : "text-gray-500"} text-xs mt-1 text-center`}
+                  style={tw` flex items-center rounded-full ${currentPage === page.title ? `text-[${Colors.pink}]` : "text-gray-500"} text-xs mt-1 text-center`}
                >
                   <View
-                     style={tw`flex  px-2 content-center items-center flex-col `}
+                     style={tw`flex px-2 content-center items-center flex-col `}
                   >
                      <Ionicons
                         color={

@@ -13,6 +13,7 @@ SplashScreen.preventAutoHideAsync();
 export default function () {
    useEffect(() => {
       loadLanguage().then(async (lang) => {
+         console.log(lang)
          await saveLanguage(lang as LanguageType);
          await SplashScreen.hideAsync()
       });

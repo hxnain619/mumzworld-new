@@ -14,7 +14,6 @@ import RTLView from "@components/RTLView";
 export default function Setting() {
    const [lang, setLanguage] = useState("");
 
-   const { t } = useTranslation();
    const navigation = useNavigation();
 
    useLayoutEffect(() => {
@@ -34,6 +33,9 @@ export default function Setting() {
       loadLanguage().then((_lang) => setLanguage(_lang));
    }, []);
 
+   useEffect(() => {
+      navigation.goBack()
+   }, [lang])
    return (
       <RTLView style={tw`justify-around items-center shadow-md p-2`}>
          <>

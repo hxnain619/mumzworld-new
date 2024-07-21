@@ -6,7 +6,6 @@ import {
    FlatList,
    Text,
    Image,
-   ActivityIndicator,
    TouchableOpacity,
 } from "react-native";
 
@@ -15,7 +14,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRouter } from "expo-router";
 import { useGetCategoriesQuery } from "@api/productSlice";
 import { generateItems, ITEMS_PER_LOAD } from "./helper";
-import Colors from "@constants/Colors";
 import tailwind from "twrnc";
 import Loader from "@components/Loader";
 import RTLView from "@components/RTLView";
@@ -51,14 +49,14 @@ export default function () {
    }
 
    return (
-      <View style={tailwind` flex flex-1`}>
+      <View style={tailwind`flex flex-1`}>
          <FlatList
-            style={tw` max-w-md pb-[70px]`}
+            style={tw` max-w-md pb-[70px] bg-white`}
             data={(items ?? []) as any}
             renderItem={({ item }) => (
                <TouchableOpacity
                   onPress={() => router.push(`/products?category=${item}`)}
-                  style={tw` p-4 sm:pb-4 shadow-md`}
+                  style={tw` p-4 sm:pb-4`}
                >
                   <RTLView style={tw`items-center`}>
                      <>
@@ -89,7 +87,7 @@ export default function () {
             ListFooterComponent={() => (
                <TouchableOpacity
                   onPress={loadMoreItems}
-                  style={tw`text-center p-2`}
+                  style={tw`text-center p-2 mb-2`}
                >
                   <Text
                      style={tw`${loadedItemsCount === (data as any)?.length ? "hidden" : ""}  text-sm text-gray-500 text-center`}
