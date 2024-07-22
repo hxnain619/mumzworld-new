@@ -10,12 +10,6 @@
     "test": "jest --watchAll",
     "build:expo": "expo build:web"
   },
-  "jest": {
-    "preset": "jest-expo",
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-native/extend-expect"
-    ]
-  },
   "dependencies": {
     "@babel/runtime": "^7.24.8",
     "@expo-google-fonts/nanum-gothic": "^0.2.3",
@@ -59,6 +53,7 @@
     "@babel/core": "^7.20.0",
     "@eslint/js": "^9.7.0",
     "@tailwindcss/typography": "^0.5.13",
+    "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^12.5.1",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.2.79",

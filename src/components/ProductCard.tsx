@@ -25,6 +25,7 @@ export default function Card(props: CardProps) {
   const isDiscount = parseInt(discount) > 0;
   return (
     <TouchableOpacity
+      testID="card-component"
       onPress={() => router.push(`/products/${id}`)}
       className={`w-1/2 p-2 border-4 border-transparent bg-white rounded-sm shadow-lg  ${className ?? ""}`}
     >
@@ -39,9 +40,7 @@ export default function Card(props: CardProps) {
         />
       </View>
       <View className={`flex-start p-1 mx-auto my-0 min-h-14`}>
-        <Text
-          className={`text-xs font-semibold text-gray-500 tracking-tight`}
-        >
+        <Text className={`text-xs font-semibold text-gray-500 tracking-tight`}>
           {title}
         </Text>
       </View>
