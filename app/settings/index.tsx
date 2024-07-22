@@ -17,7 +17,7 @@ export default function Setting() {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: <Text className={`text-black`}>Settings</Text>,
+      title: "Settings",
       headerLeft: () => (
         <Ionicons
           name="arrow-back-outline"
@@ -49,7 +49,7 @@ export default function Setting() {
               <Text className={`text-xs mr-2`}>{btn}</Text>
               {btn === lang && (
                 <Ionicons
-                  className="text-primaryPink"
+                  color={"#C30045"}
                   name="checkmark-done-outline"
                   size={18}
                 />

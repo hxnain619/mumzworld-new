@@ -3,12 +3,11 @@ import { TextInput, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Ionicons } from "@expo/vector-icons";
 
-
 interface SearchBarProps {
-   value?: string;
-   handleChange: (text: string) => void;
-   onClick?: () => void;
- }
+  value?: string;
+  handleChange: (text: string) => void;
+  onClick?: () => void;
+}
 const SearchBar: (props: SearchBarProps) => React.JSX.Element = ({
   handleChange,
   value,
@@ -28,13 +27,14 @@ const SearchBar: (props: SearchBarProps) => React.JSX.Element = ({
         className={`absolute ${lang === "en" ? "left-0" : "right-0"} top-4 text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2`}
       >
         <Ionicons
-          className={`w-5 my-1.08 h-5 text-blue-600`}
+          color={"rgb(37 99 235)"}
+          className={`w-6 my-1.08 h-auto`}
           name="search"
           size={20}
         />
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 export default SearchBar;

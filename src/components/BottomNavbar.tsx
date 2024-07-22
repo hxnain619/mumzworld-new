@@ -8,10 +8,10 @@ const BottomTabBar = (props: { currentPage: string }) => {
 
   return (
     <View
-      className={`z-50 w-[95%] h-[60px] max-w-lg shadow-lg left-2.5 bg-white border border-gray-200 rounded-full bottom-3 `}
+      className={`z-50 w-[95%] h-[70px] max-w-lg shadow-md left-2.5 bg-white border border-gray-200 rounded-full bottom-3 `}
     >
       <View
-        className={`flex flex-row items-center h-full max-w-lg mx-auto gap-1`}
+        className={`flex flex-row items-center mx-auto py-3 my-0 gap-1`}
       >
         {[
           { title: "Home", icon: "home-outline", to: "/" },
@@ -30,7 +30,7 @@ const BottomTabBar = (props: { currentPage: string }) => {
           >
             <View className={`flex px-2 content-center items-center flex-col `}>
               <Ionicons
-                color={currentPage === page.title ? 'text-primaryPink' : "gray"}
+                color={currentPage === page.title ? "#C30045" : "gray"}
                 name={page.icon}
                 size={currentPage === page.title ? 24 : 20}
               />

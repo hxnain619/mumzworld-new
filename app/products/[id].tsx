@@ -1,4 +1,4 @@
-import WebView from "react-native-webview";
+import RenderHTML from "react-native-render-html";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigation } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,6 +15,7 @@ import RTLView from "@components/RTLView";
 import { useGetProductByIdQuery } from "@api/productSlice";
 
 import { getProductByLanguage, warnings } from "./helper";
+import { LanguageType } from "@assets/translations/language";
 
 const ProductDescription = ({
   description,
@@ -28,15 +29,15 @@ const ProductDescription = ({
 
   return (
     <View>
-      <RTLView style={`gap-1 items-center justify-around`}>
+      <RTLView style={`gap-1 items-center justify-evenly`}>
         <>
           {warnings.map((warn, i) => (
             <View
               key={warn.icon}
-              className={`flex flex-col items-center justify-center px-2 w-30 h-14 text-center ${i !== 2 ? "border-r-2 border-gray-200" : ""}`}
+              className={`flex flex-col items-center justify-center px-2 w-30 h-14 text-center`}
             >
               <Ionicons name={warn.icon as any} size={18} />
-              <Text className={`text-[10px] mt-2 text-semibold text-center`}>
+              <Text className={`text-xs mt-2 text-semibold text-center`}>
                 {t(warn.value)}
               </Text>
             </View>
@@ -51,21 +52,20 @@ const ProductDescription = ({
         <Text className={`${textAlign} font-bold text-xs my-2`}>
           {t("features")}
         </Text>
-        <Text className={` font-normal ${textAlign} text-[10px] leading-4`}>
+        <Text className={`font-normal ${textAlign} text-xs leading-4`}>
           {features}
         </Text>
         <View>
           <Text className={`${textAlign} font-bold text-xs my-2`}>
             {t("description")}
           </Text>
-          <Text className={` !font-normal text-[10px] ${textAlign}`}>
-            <WebView
-              scalesPageToFit={true}
-              bounces={false}
-              javaScriptEnabled
-              className={`text-[10px] w-[${width}] h-full`}
-              source={{ html: description }}
-              automaticallyAdjustContentInsets={false}
+          <Text className={` !font-normal text-xs ${textAlign}`}>
+            <RenderHTML
+              contentWidth={width}
+              source={{html: description}}
+              baseStyle={{
+                fontSize: 12,
+              }}
             />
           </Text>
         </View>
@@ -91,10 +91,14 @@ export default function ProductDetailPage() {
       title: currentProduct?.name,
     });
   }, [navigation, currentProduct]);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     if (product?.product) {
-      getProductByLanguage(product.product as any)
+      getProductByLanguage(
+        product.product as any,
+        i18n.language as LanguageType
+      )
         .then((prod: any) => {
           if (prod?.length) {
             setCurrentProduct(prod?.[0]);
@@ -124,7 +128,7 @@ export default function ProductDetailPage() {
             }
           />
           <View className={`mt-4 p-2`}>
-            <RTLView style={`mb-2 items-center justify-center`}>
+            <RTLView style={`mb-2 items-center justify-around`}>
               <>
                 <Text className={`text-xs w-3/4 font-semibold`}>
                   {currentProduct?.name}
@@ -162,7 +166,7 @@ export default function ProductDetailPage() {
                     </>
                   </RTLView>
                   <Text
-                    className={`font-normal line-through text-[10px] text-gray-400`}
+                    className={`font-normal line-through text-xs text-gray-400`}
                   >
                     AED{" "}
                     {parseFloat(

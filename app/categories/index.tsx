@@ -7,7 +7,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRouter } from "expo-router";
 import { useGetCategoriesQuery } from "@api/productSlice";
 import Loader from "@components/Loader";
-import RTLView from "@components/RTLView";
 
 import { generateItems, ITEMS_PER_LOAD } from "./helper";
 
@@ -49,9 +48,9 @@ export default function () {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => router.push(`/products?category=${item}`)}
-            className={`p-4 sm:pb-4 shadow-sm`}
+            className={`p-4 shadow-md`}
           >
-            <RTLView style={`items-center`}>
+            <View className={`flex flex-row items-center max-h-10`}>
               <>
                 <View className={`flex-shrink-0 mr-2`}>
                   <Image
@@ -60,7 +59,7 @@ export default function () {
                   />
                 </View>
                 <View className={`flex-1 min-w-0`}>
-                  <Text className={` text-sm font-medium text-gray-900`}>
+                  <Text className={`text-sm font-medium text-gray-900`}>
                     {item}
                   </Text>
                 </View>
@@ -74,7 +73,7 @@ export default function () {
                   />
                 </View>
               </>
-            </RTLView>
+            </View>
           </TouchableOpacity>
         )}
         ListFooterComponent={() => (

@@ -1,4 +1,5 @@
 import { loadLanguage } from '@api/languageStorage';
+import { LanguageType } from '@assets/translations/language';
 
 export const ITEM_COUNT = 800;
 export const ITEMS_PER_LOAD = 20;
@@ -9,7 +10,7 @@ export const generateItems = (items: any[]) => {
 
 export const getSearchData = (products: any[], searchText: string) => {
   return products.filter((product) =>
-    product.name.toLowerCase().includes(searchText),
+    product.name.toLowerCase().includes(searchText.toLocaleLowerCase()),
   );
 };
 
@@ -19,9 +20,7 @@ export const warnings = [
   { icon: 'checkmark-done-circle-outline', value: 'product.only_authentic' },
 ];
 
-export const getProductByLanguage = async (product: any[] | undefined) => {
+export const getProductByLanguage = async (product: any[] | undefined, lang: LanguageType) => {
   if (!product) return [];
-
-  const lang = await loadLanguage();
   return product?.filter((prod: any) => prod.language === lang);
 };
