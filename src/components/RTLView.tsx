@@ -1,7 +1,6 @@
-import { loadLanguage } from '@api/languageStorage';
-import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
-import tailwind from 'twrnc';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { View } from "react-native";
 
 export default function RTLView({
   style,
@@ -10,20 +9,12 @@ export default function RTLView({
   style?: any;
   children: React.JSX.Element;
 }) {
-  const [lang, setLanguage] = useState('en');
-
-  useEffect(() => {
-    loadLanguage().then((lang) => {
-      setLanguage(lang);
-    });
-  }, []);
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
 
   return (
     <View
-      style={[
-        tailwind`flex ${lang === 'en' ? 'flex-row' : 'flex-row-reverse'}`,
-        style,
-      ]}
+      className={`flex ${lang === "en" ? "flex-row" : "flex-row-reverse"} ${style}`}
     >
       {children}
     </View>

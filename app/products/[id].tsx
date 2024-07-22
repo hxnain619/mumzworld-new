@@ -1,4 +1,3 @@
-import tailwind from "twrnc";
 import WebView from "react-native-webview";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigation } from "expo-router";
@@ -16,8 +15,6 @@ import RTLView from "@components/RTLView";
 import { useGetProductByIdQuery } from "@api/productSlice";
 
 import { getProductByLanguage, warnings } from "./helper";
-import { loadLanguage, saveLanguage } from "@api/languageStorage";
-import { LanguageType } from "@assets/translations/language";
 
 const ProductDescription = ({
   description,
@@ -31,17 +28,15 @@ const ProductDescription = ({
 
   return (
     <View>
-      <RTLView style={tailwind`gap-1 items-center justify-around`}>
+      <RTLView style={`gap-1 items-center justify-around`}>
         <>
           {warnings.map((warn, i) => (
             <View
               key={warn.icon}
-              style={tailwind`flex flex-col items-center justify-center px-2 w-30 h-14 text-center ${i !== 2 ? "border-r-2 border-gray-200" : ""}`}
+              className={`flex flex-col items-center justify-center px-2 w-30 h-14 text-center ${i !== 2 ? "border-r-2 border-gray-200" : ""}`}
             >
               <Ionicons name={warn.icon as any} size={18} />
-              <Text
-                style={tailwind`text-[10px] mt-2 text-semibold text-center`}
-              >
+              <Text className={`text-[10px] mt-2 text-semibold text-center`}>
                 {t(warn.value)}
               </Text>
             </View>
@@ -49,26 +44,26 @@ const ProductDescription = ({
         </>
       </RTLView>
       <Divider />
-      <View style={tailwind`px-2 ${textAlign}`}>
-        <Text style={tailwind`${textAlign} font-bold text-sm my-2`}>
+      <View className={`px-2 ${textAlign}`}>
+        <Text className={`${textAlign} font-bold text-sm my-2`}>
           {t("product_details")}
         </Text>
-        <Text style={tailwind`${textAlign} font-bold text-xs my-2`}>
+        <Text className={`${textAlign} font-bold text-xs my-2`}>
           {t("features")}
         </Text>
-        <Text style={tailwind` font-normal ${textAlign} text-[10px] leading-4`}>
+        <Text className={` font-normal ${textAlign} text-[10px] leading-4`}>
           {features}
         </Text>
         <View>
-          <Text style={tailwind`${textAlign} font-bold text-xs my-2`}>
+          <Text className={`${textAlign} font-bold text-xs my-2`}>
             {t("description")}
           </Text>
-          <Text style={tailwind` !font-normal text-[10px] ${textAlign}`}>
+          <Text className={` !font-normal text-[10px] ${textAlign}`}>
             <WebView
               scalesPageToFit={true}
               bounces={false}
               javaScriptEnabled
-              style={tailwind`text-[10px] w-[${width}] h-full`}
+              className={`text-[10px] w-[${width}] h-full`}
               source={{ html: description }}
               automaticallyAdjustContentInsets={false}
             />
@@ -91,11 +86,6 @@ export default function ProductDetailPage() {
   const { width } = Dimensions.get("window");
   const height = width * 0.7;
 
-  useEffect(() => {
-   loadLanguage().then(async (lang) => {
-      await saveLanguage(lang as LanguageType);
-   });
-}, []);
   useEffect(() => {
     navigation.setOptions({
       title: currentProduct?.name,
@@ -133,14 +123,14 @@ export default function ProductDetailPage() {
               currentProduct?.media_gallery?.map((img: any) => img.url) ?? []
             }
           />
-          <View style={tailwind`mt-4 p-2`}>
-            <RTLView style={tailwind`mb-2 items-center justify-center`}>
+          <View className={`mt-4 p-2`}>
+            <RTLView style={`mb-2 items-center justify-center`}>
               <>
-                <Text style={tailwind`text-xs w-3/4 font-semibold`}>
+                <Text className={`text-xs w-3/4 font-semibold`}>
                   {currentProduct?.name}
                 </Text>
                 <Link
-                  style={tailwind`text-blue-400 text-xs font-semibold`}
+                  className={`text-blue-400 text-xs font-semibold`}
                   href="#"
                 >
                   <Text>{t("explore_brand")}</Text>
@@ -151,12 +141,12 @@ export default function ProductDetailPage() {
               rating={currentProduct.rating_summary}
               total_reviews={currentProduct.reviews.items.length}
             />
-            <RTLView style={tailwind`items-center justify-between`}>
+            <RTLView style={`items-center justify-between`}>
               <>
-                <View style={tailwind`flex flex-col mt-2`}>
+                <View className={`flex flex-col mt-2`}>
                   <RTLView>
                     <>
-                      <Text style={tailwind`font-bold text-xs`}>
+                      <Text className={`font-bold text-xs text-primaryPink`}>
                         AED{" "}
                         {parseFloat(
                           currentProduct?.price_range?.minimum_price
@@ -172,7 +162,7 @@ export default function ProductDetailPage() {
                     </>
                   </RTLView>
                   <Text
-                    style={tailwind`font-normal line-through text-[10px] text-gray-400`}
+                    className={`font-normal line-through text-[10px] text-gray-400`}
                   >
                     AED{" "}
                     {parseFloat(
@@ -181,7 +171,7 @@ export default function ProductDetailPage() {
                     ).toFixed(2)}
                   </Text>
                 </View>
-                <RTLView style={tailwind`mt-2 gap-3`}>
+                <RTLView style={`mt-2 gap-3`}>
                   <>
                     <Ionicons color="gray" name="heart-outline" size={18} />
                     <Ionicons color="gray" name="share-outline" size={18} />

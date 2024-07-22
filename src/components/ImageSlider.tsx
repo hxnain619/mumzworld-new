@@ -1,5 +1,3 @@
-import Colors from "@constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
    Dimensions,
@@ -11,7 +9,6 @@ import {
    Text,
    View,
 } from "react-native";
-import tailwind from "twrnc";
 
 interface ImageSliderProps {
    images: ImageSourcePropType[];
@@ -34,7 +31,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
    };
 
    return (
-      <View style={tailwind`mb-3`}>
+      <View className={`mb-3`}>
          <ScrollView
             pagingEnabled
             horizontal
@@ -52,12 +49,12 @@ export default function ImageSlider({ images }: ImageSliderProps) {
             ))}
          </ScrollView>
          <View
-            style={tailwind`flex flex-row absolute -bottom-[20px] w-3/2 self-center items-center`}
+            className={`flex flex-row absolute -bottom-[20px] w-3/2 self-center items-center`}
          >
             {images.map((_, index) => (
                <View
                   key={index + "dots"}
-                  style={tailwind`rounded-full h-2 px-1 ${active === index ? `bg-[${Colors.pink}]` : `bg-gray-200`} mx-1`}
+                  className={`rounded-full h-2 px-1 ${active === index ? `bg-primaryPink` : `bg-gray-200`} mx-1`}
                >
                   <Text>
                   &nbsp;

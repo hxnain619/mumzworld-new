@@ -29,7 +29,17 @@
     },
     "plugins": [
       "expo-router",
-      "expo-asset"
+      "expo-asset",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "node_modules/@expo-google-fonts/nanum-gothic/NanumGothic_400Regular.ttf",
+            "node_modules/@expo-google-fonts/nanum-gothic/NanumGothic_700Bold.ttf",
+            "node_modules/@expo-google-fonts/nanum-gothic/NanumGothic_800ExtraBold.ttf"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

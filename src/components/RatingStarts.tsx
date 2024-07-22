@@ -1,8 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { SafeAreaView, Text, View } from "react-native";
-import tailwind from "twrnc";
+import { SafeAreaView, Text } from "react-native";
 import RTLView from "./RTLView";
 
 interface RatingStarProps {
@@ -18,7 +17,7 @@ export default function RatingStars({
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView style={tailwind`flex flex-1`}>
+    <SafeAreaView className={`flex flex-1`}>
       <RTLView>
         <>
           {Array.from(Array(stars).keys()).map((star) => (
@@ -29,8 +28,8 @@ export default function RatingStars({
               size={16}
             />
           ))}
-          <Text style={tailwind`text-xs text-slate-400 ml-2 `}>{rating}</Text>
-          <Text style={tailwind`text-xs text-slate-400 ml-2`}>
+          <Text className={`text-xs text-slate-400 ml-2 `}>{rating}</Text>
+          <Text className={`text-xs text-slate-400 ml-2`}>
             ({total_reviews} {t("reviews")})
           </Text>
         </>
